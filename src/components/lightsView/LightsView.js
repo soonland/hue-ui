@@ -4,13 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Title from 'components/common/Title';
 import { getLightsAction, setStateAction, getLights } from 'store/slices/lightsSlice';
 import { Col, Grid, Row } from 'react-flexbox-grid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { CirclePicker } from 'react-color';
-import Switch from 'react-switch';
-import Slider from '@reach/slider';
-import ActionIcon from '../common/ActionIcon';
-import '@reach/slider/styles.css';
+import Light from '../common/Light';
 
 const LightsView = () => {
   const [color, setColor] = useState({ background: '#fff' });
@@ -56,15 +51,9 @@ const LightsView = () => {
           {lights &&
             lights.map((data, index) => {
               const k = `id${index}`;
-              const colorLight = data.data.state.on ? `rgb(${data.rgb[0]}, ${data.rgb[1]}, ${data.rgb[2]})` : 'black';
               return (
                 <Col key={k} style={{ margin: '1em' }}>
-                  <ActionIcon onClick={onClickLight} action="toggle" index={index}>
-                    <FontAwesomeIcon icon={faLightbulb} size="4x" title={data.data.name} style={{ color: `${colorLight}` }} />
-                  </ActionIcon>
-                  <div>{data.data.name}</div>
-                  <Switch onChange={handleChange} checked={lights[index].data.state.on || false} id={`${index}`} />
-                  <Slider min={0} max={100} step={5} orientation="vertical" value={data.data.state.bri} onChange={handleSliderChange} />
+                  <Light onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={data} index={index} />
                 </Col>
               );
             })}
