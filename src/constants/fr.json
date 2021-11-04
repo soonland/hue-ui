@@ -1,0 +1,10 @@
+{
+  "common.actions": "Actions",
+  "common.required": "Requis",
+  "common.create": "Créer",
+  "common.save": "Enregistrer",
+  "common.cancel": "Annuler",
+  "topMenu.header.home": "Accueil",
+  "topMenu.header.lights": "Lumières",
+  "topMenu.header.settings": "Configuration"
+}

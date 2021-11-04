@@ -1,0 +1,20 @@
+.input-icons { 
+    position: relative;
+} 
+
+.input-icons .fa-user { 
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translate(-50%, -50%);
+} 
+  
+.input-icons > input { 
+    padding-left: 25px;
+} 
+  
+/* .input-field { 
+    width: 100%; 
+    padding: 10px; 
+    text-align: center; 
+}  */

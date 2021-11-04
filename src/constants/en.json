@@ -1,0 +1,10 @@
+{
+  "common.actions": "Actions",
+  "common.required": "Required",
+  "common.create": "Create",
+  "common.save": "Save",
+  "common.cancel": "Cancel",
+  "topMenu.header.home": "Home",
+  "topMenu.header.lights": "Lights",
+  "topMenu.header.settings": "Settings"
+}
