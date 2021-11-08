@@ -9,7 +9,6 @@ import Light from '../common/Light';
 
 const LightsView = () => {
   const [color, setColor] = useState({ background: '#fff' });
-  const [lightState, setLightState] = useState([]);
   const dispatch = useDispatch();
   const lights = useSelector(getLights);
 
@@ -26,18 +25,16 @@ const LightsView = () => {
   };
 
   const handleChangeComplete = (parColor) => {
-    console.log(parColor);
     setColor({ background: parColor.hex, r: parColor.rgb.r, g: parColor.rgb.g, b: parColor.rgb.b });
   };
 
   const handleChange = (checked, event, id) => {
-    setLightState({ ...lightState, [parseInt(id, 10)]: checked });
     dispatch(setStateAction({ id: lights[id].data.id, on: checked }));
   };
 
-  const handleSliderChange = (newValue) => {
-    console.log(newValue);
-    // setBrightness(newValue);
+  const handleSliderChange = (bri, index) => {
+    console.log(bri, index);
+    dispatch(setStateAction({ id: lights[index].data.id, bri }));
   };
 
   // if (isLoading) return <Loading />;

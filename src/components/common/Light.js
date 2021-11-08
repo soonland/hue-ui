@@ -15,7 +15,15 @@ const Light = ({ data, onClickLight, handleChange, handleSliderChange, index }) 
       </ActionIcon>
       <div>{data.data.name}</div>
       <Switch onChange={handleChange} checked={data.data.state.on || false} id={`${index}`} />
-      <Slider min={0} max={256} step={5} orientation="vertical" value={data.data.state.bri} onChange={handleSliderChange} />
+      <Slider
+        onChange={(bri) => handleSliderChange(bri, index)}
+        min={0}
+        max={256}
+        step={5}
+        orientation="vertical"
+        value={data.data.state.bri}
+        id={`${index}`}
+      />
     </>
   );
 };
