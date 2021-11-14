@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
 import { getLightsAction, setStateAction, getLights } from 'store/slices/lightsSlice';
-import { Col, Grid, Row } from 'react-flexbox-grid';
 import { CirclePicker } from 'react-color';
 import Light from '../common/Light';
 
@@ -43,19 +42,15 @@ const LightsView = () => {
       <Title level="h1" id="topMenu.header.lights" />
       <div>{JSON.stringify(color)}</div>
       <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
-      <Grid fluid>
-        <Row>
-          {lights &&
-            lights.map((data, index) => {
-              const k = `id${index}`;
-              return (
-                <Col key={k} style={{ margin: '1em' }}>
-                  <Light onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={data} index={index} />
-                </Col>
-              );
-            })}
-        </Row>
-      </Grid>
+      {lights &&
+        lights.map((data, index) => {
+          const k = `id${index}`;
+          return (
+            <div key={k} style={{ margin: '1em', display: 'inline-block' }}>
+              <Light onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={data} index={index} />
+            </div>
+          );
+        })}
     </div>
   );
 };

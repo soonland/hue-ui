@@ -6,5 +6,9 @@
   "common.cancel": "Annuler",
   "topMenu.header.home": "Accueil",
   "topMenu.header.lights": "Lumières",
-  "topMenu.header.settings": "Configuration"
+  "topMenu.header.settings": "Configuration",
+  "groupsView.header.actions": "Actions",
+  "groupsView.header.id": "ID",
+  "groupsView.header.name": "Nom",
+  "groupsView.header.lights": "Lumières"
 }

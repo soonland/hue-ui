@@ -9,6 +9,7 @@ const Header = () => {
   const menuOptions = [
     { label: 'topMenu.header.home', url: '/home' },
     { label: 'topMenu.header.lights', url: '/lights' },
+    { label: 'topMenu.header.groups', url: '/groups' },
     { label: 'topMenu.header.settings', url: '/settings' },
   ];
 

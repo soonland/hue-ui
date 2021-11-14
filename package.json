@@ -1,5 +1,5 @@
 {
-  "name": "my-first-app",
+  "name": "hue-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -12,9 +12,6 @@
     "@reduxjs/toolkit": "^1.5.0",
     "@tds/core-css-reset": "^3.0.1",
     "@tds/core-heading": "^3.0.8",
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "babel-plugin-module-resolver": "^4.1.0",
     "express": "^4.17.1",
@@ -22,7 +19,6 @@
     "react": "^17.0.1",
     "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
-    "react-flexbox-grid": "^2.1.2",
     "react-intl": "^5.10.16",
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
@@ -64,7 +60,6 @@
     "eslint-plugin-prettier": "^3.3.0",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.8",
-    "jira-prepare-commit-msg": "^1.5.2",
     "lint-staged": "^10.5.3",
     "node-bash-title": "0.0.2",
     "prettier": "^2.2.1",

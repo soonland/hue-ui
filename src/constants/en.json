@@ -6,5 +6,10 @@
   "common.cancel": "Cancel",
   "topMenu.header.home": "Home",
   "topMenu.header.lights": "Lights",
-  "topMenu.header.settings": "Settings"
+  "topMenu.header.groups": "Groups",
+  "topMenu.header.settings": "Settings",
+  "groupsView.header.actions": "Actions",
+  "groupsView.header.id": "ID",
+  "groupsView.header.name": "Name",
+  "groupsView.header.lights": "Lights"
 }
