@@ -28,7 +28,11 @@ const LightsView = () => {
   };
 
   const handleChange = (checked, event, id) => {
-    dispatch(setStateAction({ id: lights[id].data.id, on: checked }));
+    console.log(id);
+    console.log(lights.data);
+    const lightId = lights.data[id].id;
+    console.log(lightId);
+    dispatch(setStateAction({ id: lightId, on: checked }));
   };
 
   const handleSliderChange = (bri, index) => {
@@ -43,7 +47,8 @@ const LightsView = () => {
       <div>{JSON.stringify(color)}</div>
       <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
       {lights &&
-        lights.map((data, index) => {
+        lights.data &&
+        lights.data.map((data, index) => {
           const k = `id${index}`;
           return (
             <div key={k} style={{ margin: '1em', display: 'inline-block' }}>

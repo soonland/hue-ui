@@ -7,21 +7,21 @@ import ActionIcon from './ActionIcon';
 import '@reach/slider/styles.css';
 
 const Light = ({ data, onClickLight, handleChange, handleSliderChange, index }) => {
-  const colorLight = data.data.state.on ? `rgb(${data.rgb[0]}, ${data.rgb[1]}, ${data.rgb[2]})` : 'black';
+  const colorLight = data.on.on ? `yellow` : 'black';
   return (
     <>
       <ActionIcon onClick={onClickLight} action="toggle" index={index}>
-        <FontAwesomeIcon icon={faLightbulb} size="4x" title={data.data.name} style={{ color: `${colorLight}` }} />
+        <FontAwesomeIcon icon={faLightbulb} size="4x" title={data.metadata.name} style={{ color: `${colorLight}` }} />
       </ActionIcon>
-      <div>{data.data.name}</div>
-      <Switch onChange={handleChange} checked={data.data.state.on || false} id={`${index}`} />
+      <div>{data.metadata.name}</div>
+      <Switch onChange={handleChange} checked={data.on.on || false} id={`${index}`} />
       <Slider
         onChange={(bri) => handleSliderChange(bri, index)}
         min={0}
-        max={256}
+        max={100}
         step={5}
         orientation="vertical"
-        value={data.data.state.bri}
+        value={data.dimming.brightness}
         id={`${index}`}
       />
     </>
