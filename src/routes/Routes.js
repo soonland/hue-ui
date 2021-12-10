@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import App from '../App';
 import Home from '../components/home/Home';
 import LightsView from '../components/lightsView/LightsView';
-import GroupsView from '../components/groupsView/GroupsView';
+import RoomsView from '../components/roomsView/RoomsView';
 import SettingsView from '../components/settingsView/SettingsView';
 import NoMatch from '../components/noMatch/NoMatch';
 
@@ -14,7 +14,7 @@ const AppRoute = () => (
       <Redirect from="/settings" to="/settings/banners" exact />
       <Route path="/home" component={Home} />
       <Route path="/lights" exact component={LightsView} />
-      <Route path="/groups" exact component={GroupsView} />
+      <Route path="/rooms" exact component={RoomsView} />
       <Route path="/settings/:sectionId" component={SettingsView} />
       <Route path="*" component={NoMatch} />
     </Switch>

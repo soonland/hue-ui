@@ -7,8 +7,8 @@
   "leftMenu.menuItem.home": "Accueil",
   "leftMenu.menuItem.lights": "Lumières",
   "leftMenu.menuItem.settings": "Configuration",
-  "groupsView.header.actions": "Actions",
-  "groupsView.header.id": "ID",
-  "groupsView.header.name": "Nom",
-  "groupsView.header.lights": "Lumières"
+  "roomsView.header.actions": "Actions",
+  "roomsView.header.id": "ID",
+  "roomsView.header.name": "Nom",
+  "roomsView.header.lights": "Lumières"
 }

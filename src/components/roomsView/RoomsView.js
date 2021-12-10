@@ -2,44 +2,36 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
-import {
-  getGroups,
-  getLights,
-  getGroupsAction,
-  getLightsAction,
-  getLoading,
-  getLoadingGroup,
-  deleteGroupAction,
-  setGroupStateAction,
-} from 'store/slices/lightsSlice';
+import { getRooms, getLoading as getLoadingRooms, getRoomsAction, deleteRoomAction, setRoomStateAction } from 'store/slices/roomsSlice';
+import { getLights, getLoading as getLoadingLights, getLightsAction } from 'store/slices/lightsSlice';
 import Loading from 'components/common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faToggleOff, faToggleOn, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import ActionIcon from '../common/ActionIcon';
 
-const GroupsView = () => {
+const RoomsView = () => {
   const dispatch = useDispatch();
-  const groups = useSelector(getGroups);
+  const rooms = useSelector(getRooms);
   const lights = useSelector(getLights);
-  const isLoading = useSelector(getLoading);
-  const isLoadingGroup = useSelector(getLoadingGroup);
+  const isLoading = useSelector(getLoadingLights);
+  const isLoadingRoom = useSelector(getLoadingRooms);
 
   const loadData = async () => {
     dispatch(getLightsAction());
-    dispatch(getGroupsAction());
+    dispatch(getRoomsAction());
   };
 
   useEffect(() => {
     loadData();
   }, []);
 
-  const fetchLightById = (data) => lights.filter((el) => data.includes(`${el.data.id}`)).map((el2) => el2.data.name);
+  const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.id}`)).map((el2) => el2.metadata.name);
 
-  const onClickGroup = async (action, index) => {
+  const onClickRoom = async (action, index) => {
     if (action === 'delete') {
-      dispatch(deleteGroupAction({ id: groups[index].data.id, index }));
+      dispatch(deleteRoomAction({ id: rooms[index].data.id, index }));
     } else if (action === 'switch') {
-      dispatch(setGroupStateAction({ id: groups[index].data.id, on: !groups[index].data.state.all_on }));
+      dispatch(setRoomStateAction({ id: rooms[index].data.id, on: !rooms[index].data.state.all_on }));
     }
     // else if (action === 'edit') {
     //   setEditableProducts({
@@ -56,49 +48,50 @@ const GroupsView = () => {
 
   const editableActions = (index) => (
     <>
-      <ActionIcon onClick={onClickGroup} action="edit" index={index}>
+      <ActionIcon onClick={onClickRoom} action="edit" index={index}>
         <FontAwesomeIcon icon={faEdit} />
       </ActionIcon>
-      <ActionIcon onClick={onClickGroup} action="delete" index={index}>
+      <ActionIcon onClick={onClickRoom} action="delete" index={index}>
         <FontAwesomeIcon icon={faTrashAlt} />
       </ActionIcon>
-      <ActionIcon onClick={onClickGroup} action="switch" index={index}>
-        <FontAwesomeIcon icon={groups[index].data.state.all_on ? faToggleOn : faToggleOff} />
+      <ActionIcon onClick={onClickRoom} action="switch" index={index}>
+        {/* <FontAwesomeIcon icon={rooms[index].data.state.all_on ? faToggleOn : faToggleOff} /> */}
       </ActionIcon>
     </>
   );
 
-  if (isLoading || isLoadingGroup) return <Loading />;
+  if (isLoading || isLoadingRoom) return <Loading />;
   return (
     <div>
-      <Title level="h1" id="leftMenu.menuItem.groups" />
+      <Title level="h1" id="leftMenu.menuItem.rooms" />
       <table className="ui selectable table">
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="groupsView.header.actions" />
+              <FormattedMessage id="roomsView.header.actions" />
             </th>
             <th>
-              <FormattedMessage id="groupsView.header.id" />
+              <FormattedMessage id="roomsView.header.id" />
             </th>
             <th>
-              <FormattedMessage id="groupsView.header.name" />
+              <FormattedMessage id="roomsView.header.name" />
             </th>
             <th>
-              <FormattedMessage id="groupsView.header.lights" />
+              <FormattedMessage id="roomsView.header.lights" />
             </th>
           </tr>
         </thead>
         <tbody>
-          {groups &&
-            groups.map((group, index) => {
+          {rooms &&
+            rooms.data &&
+            rooms.data.map((group, index) => {
               const k = `id${index}`;
               return (
                 <tr key={k}>
                   <td>{editableActions(index)}</td>
-                  <td>{group.data.id}</td>
-                  <td>{group.data.name}</td>
-                  <td>{fetchLightById(group.data.lights).join(', ')}</td>
+                  <td>{group.id}</td>
+                  <td>{group.metadata.name}</td>
+                  <td>{fetchLightById(group.services).join(', ')}</td>
                 </tr>
               );
             })}
@@ -108,4 +101,4 @@ const GroupsView = () => {
   );
 };
 
-export default GroupsView;
+export default RoomsView;

@@ -6,7 +6,7 @@ const LeftMenu = () => {
   const menuOptions = [
     { label: 'leftMenu.menuItem.home', url: '/home' },
     { label: 'leftMenu.menuItem.lights', url: '/lights' },
-    { label: 'leftMenu.menuItem.groups', url: '/groups' },
+    { label: 'leftMenu.menuItem.rooms', url: '/rooms' },
     { label: 'leftMenu.menuItem.settings', url: '/settings' },
   ];
 

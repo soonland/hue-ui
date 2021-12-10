@@ -6,10 +6,10 @@
   "common.cancel": "Cancel",
   "leftMenu.menuItem.home": "Home",
   "leftMenu.menuItem.lights": "Lights",
-  "leftMenu.menuItem.groups": "Groups",
+  "leftMenu.menuItem.rooms": "Rooms",
   "leftMenu.menuItem.settings": "Settings",
-  "groupsView.header.actions": "Actions",
-  "groupsView.header.id": "ID",
-  "groupsView.header.name": "Name",
-  "groupsView.header.lights": "Lights"
+  "roomsView.header.actions": "Actions",
+  "roomsView.header.id": "ID",
+  "roomsView.header.name": "Name",
+  "roomsView.header.lights": "Lights"
 }
