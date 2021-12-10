@@ -1,11 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { changeLang } from 'store/slices/headerSlice';
 
-const Header = () => {
-  const dispatch = useDispatch();
+const LeftMenu = () => {
   const menuOptions = [
     { label: 'topMenu.header.home', url: '/home' },
     { label: 'topMenu.header.lights', url: '/lights' },
@@ -25,17 +22,7 @@ const Header = () => {
     );
   });
 
-  const handleOnClick = () => {
-    dispatch(changeLang());
-  };
-  return (
-    <div className="menuHeader">
-      {menuHeader}
-      <button type="button" onClick={handleOnClick} className="btn main">
-        Click me
-      </button>
-    </div>
-  );
+  return <div className="menuHeader">{menuHeader}</div>;
 };
 
-export default Header;
+export default LeftMenu;

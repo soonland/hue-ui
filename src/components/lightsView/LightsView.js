@@ -24,7 +24,6 @@ const LightsView = () => {
   };
 
   const handleChangeComplete = (parColor) => {
-    console.log(parColor);
     setColor({ background: parColor.hex, r: parColor.rgb.r, g: parColor.rgb.g, b: parColor.rgb.b });
   };
 

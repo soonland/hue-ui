@@ -16,8 +16,10 @@ const App = ({ children }) => {
   return (
     <>
       <CSSReset />
-      <Header />
-      <div id="content">{children}</div>
+      <div id="content">
+        <Header />
+        <div style={{ marginLeft: '160px' }}>{children}</div>
+      </div>
     </>
   );
 };
