@@ -4,6 +4,7 @@ import App from '../App';
 import Home from '../components/home/Home';
 import LightsView from '../components/lightsView/LightsView';
 import RoomsView from '../components/roomsView/RoomsView';
+import ZonesView from '../components/zonesView/ZonesView';
 import SettingsView from '../components/settingsView/SettingsView';
 import NoMatch from '../components/noMatch/NoMatch';
 
@@ -15,6 +16,7 @@ const AppRoute = () => (
       <Route path="/home" component={Home} />
       <Route path="/lights" exact component={LightsView} />
       <Route path="/rooms" exact component={RoomsView} />
+      <Route path="/zones" exact component={ZonesView} />
       <Route path="/settings/:sectionId" component={SettingsView} />
       <Route path="*" component={NoMatch} />
     </Switch>

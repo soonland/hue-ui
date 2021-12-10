@@ -2,23 +2,23 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
-import { getRooms, getLoading as getLoadingRooms, getRoomsAction, deleteRoomAction, setRoomStateAction } from 'store/slices/roomsSlice';
+import { getZones, getLoading as getLoadingZones, getZonesAction, deleteZoneAction, setZoneStateAction } from 'store/slices/zonesSlice';
 import { getLights, getLoading as getLoadingLights, getLightsAction } from 'store/slices/lightsSlice';
 import Loading from 'components/common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import ActionIcon from '../common/ActionIcon';
 
-const RoomsView = () => {
+const ZonesView = () => {
   const dispatch = useDispatch();
-  const rooms = useSelector(getRooms);
+  const zones = useSelector(getZones);
   const lights = useSelector(getLights);
   const isLoading = useSelector(getLoadingLights);
-  const isLoadingRoom = useSelector(getLoadingRooms);
+  const isLoadingZone = useSelector(getLoadingZones);
 
   const loadData = async () => {
     dispatch(getLightsAction());
-    dispatch(getRoomsAction());
+    dispatch(getZonesAction());
   };
 
   useEffect(() => {
@@ -27,11 +27,11 @@ const RoomsView = () => {
 
   const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.id}`)).map((el2) => el2.metadata.name);
 
-  const onClickRoom = async (action, index) => {
+  const onClickZone = async (action, index) => {
     if (action === 'delete') {
-      dispatch(deleteRoomAction({ id: rooms[index].data.id, index }));
+      dispatch(deleteZoneAction({ id: zones[index].data.id, index }));
     } else if (action === 'switch') {
-      dispatch(setRoomStateAction({ id: rooms[index].data.id, on: !rooms[index].data.state.all_on }));
+      dispatch(setZoneStateAction({ id: zones[index].data.id, on: !zones[index].data.state.all_on }));
     }
     // else if (action === 'edit') {
     //   setEditableProducts({
@@ -48,43 +48,43 @@ const RoomsView = () => {
 
   const editableActions = (index) => (
     <>
-      <ActionIcon onClick={onClickRoom} action="edit" index={index}>
+      <ActionIcon onClick={onClickZone} action="edit" index={index}>
         <FontAwesomeIcon icon={faEdit} />
       </ActionIcon>
-      <ActionIcon onClick={onClickRoom} action="delete" index={index}>
+      <ActionIcon onClick={onClickZone} action="delete" index={index}>
         <FontAwesomeIcon icon={faTrashAlt} />
       </ActionIcon>
-      <ActionIcon onClick={onClickRoom} action="switch" index={index}>
-        {/* <FontAwesomeIcon icon={rooms[index].data.state.all_on ? faToggleOn : faToggleOff} /> */}
+      <ActionIcon onClick={onClickZone} action="switch" index={index}>
+        {/* <FontAwesomeIcon icon={zones[index].data.state.all_on ? faToggleOn : faToggleOff} /> */}
       </ActionIcon>
     </>
   );
 
-  if (isLoading || isLoadingRoom) return <Loading />;
+  if (isLoading || isLoadingZone) return <Loading />;
   return (
     <div>
-      <Title level="h1" id="leftMenu.menuItem.rooms" />
+      <Title level="h1" id="leftMenu.menuItem.zones" />
       <table className="ui selectable table">
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="roomsView.header.actions" />
+              <FormattedMessage id="zonesView.header.actions" />
             </th>
             <th>
-              <FormattedMessage id="roomsView.header.id" />
+              <FormattedMessage id="zonesView.header.id" />
             </th>
             <th>
-              <FormattedMessage id="roomsView.header.name" />
+              <FormattedMessage id="zonesView.header.name" />
             </th>
             <th>
-              <FormattedMessage id="roomsView.header.lights" />
+              <FormattedMessage id="zonesView.header.lights" />
             </th>
           </tr>
         </thead>
         <tbody>
-          {rooms &&
-            rooms.data &&
-            rooms.data.map((group, index) => {
+          {zones &&
+            zones.data &&
+            zones.data.map((group, index) => {
               const k = `id${index}`;
               return (
                 <tr key={k}>
@@ -101,4 +101,4 @@ const RoomsView = () => {
   );
 };
 
-export default RoomsView;
+export default ZonesView;
