@@ -39,7 +39,7 @@ const LightsView = () => {
   // if (isLoading) return <Loading />;
   return (
     <div>
-      <Title level="h1" id="topMenu.header.lights" />
+      <Title level="h1" id="leftMenu.menuItem.lights" />
       <div>{JSON.stringify(color)}</div>
       <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
       {lights &&

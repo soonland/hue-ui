@@ -71,7 +71,7 @@ const GroupsView = () => {
   if (isLoading || isLoadingGroup) return <Loading />;
   return (
     <div>
-      <Title level="h1" id="topMenu.header.groups" />
+      <Title level="h1" id="leftMenu.menuItem.groups" />
       <table className="ui selectable table">
         <thead>
           <tr>

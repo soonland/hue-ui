@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const LeftMenu = () => {
   const menuOptions = [
-    { label: 'topMenu.header.home', url: '/home' },
-    { label: 'topMenu.header.lights', url: '/lights' },
-    { label: 'topMenu.header.groups', url: '/groups' },
-    { label: 'topMenu.header.settings', url: '/settings' },
+    { label: 'leftMenu.menuItem.home', url: '/home' },
+    { label: 'leftMenu.menuItem.lights', url: '/lights' },
+    { label: 'leftMenu.menuItem.groups', url: '/groups' },
+    { label: 'leftMenu.menuItem.settings', url: '/settings' },
   ];
 
   const menuHeader = menuOptions.map((data, index) => {
