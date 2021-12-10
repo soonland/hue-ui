@@ -20,24 +20,21 @@ const LightsView = () => {
   }, []);
 
   const onClickLight = (action, index) => {
-    dispatch(setStateAction({ id: lights[index].data.id, rgb: [color.r, color.g, color.b] }));
+    dispatch(setStateAction({ id: index, rgb: [color.r, color.g, color.b] }));
   };
 
   const handleChangeComplete = (parColor) => {
+    console.log(parColor);
     setColor({ background: parColor.hex, r: parColor.rgb.r, g: parColor.rgb.g, b: parColor.rgb.b });
   };
 
   const handleChange = (checked, event, id) => {
-    console.log(id);
-    console.log(lights.data);
-    const lightId = lights.data[id].id;
-    console.log(lightId);
-    dispatch(setStateAction({ id: lightId, on: checked }));
+    dispatch(setStateAction({ id, on: checked }));
   };
 
-  const handleSliderChange = (bri, index) => {
-    console.log(bri, index);
-    dispatch(setStateAction({ id: lights[index].data.id, bri }));
+  const handleSliderChange = (bri, id) => {
+    console.log(bri, id);
+    dispatch(setStateAction({ id, bri }));
   };
 
   // if (isLoading) return <Loading />;
