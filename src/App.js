@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 // import { useDispatch } from 'react-redux';
 import CSSReset from '@tds/core-css-reset';
-import Header from 'components/header/Header';
+import LeftMenu from 'components/leftMenu/LeftMenu';
 import './App.css';
 
 const App = ({ children }) => {
@@ -17,7 +17,7 @@ const App = ({ children }) => {
     <>
       <CSSReset />
       <div id="content">
-        <Header />
+        <LeftMenu />
         <div style={{ marginLeft: '160px' }}>{children}</div>
       </div>
     </>
