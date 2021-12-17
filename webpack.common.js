@@ -2,7 +2,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const env = process.env.NODE_ENV || 'development';
@@ -11,7 +11,7 @@ module.exports = {
   // entry: ['@babel/polyfill', './src/index.js'], // useless?
   output: {
     path: path.resolve(__dirname, `dist/${env}`),
-    filename: '[name]-[hash].js',
+    filename: '[name]-[fullhash].js',
     publicPath: '/', // used for routing
   },
   resolve: {
@@ -53,10 +53,10 @@ module.exports = {
     }),
     // creates a separate style.css file instead of adding the styles to the bundle.js
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
+      filename: '[name].[fullhash].css',
+      chunkFilename: '[id].[fullhash].css',
     }),
-    new CleanWebpackPlugin([`dist/${env}`]),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
         { from: 'src/server', to: 'server' },
