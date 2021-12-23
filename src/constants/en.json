@@ -8,6 +8,7 @@
   "leftMenu.menuItem.lights": "Lights",
   "leftMenu.menuItem.rooms": "Rooms",
   "leftMenu.menuItem.zones": "Zones",
+  "leftMenu.menuItem.devices": "Devices",
   "leftMenu.menuItem.settings": "Settings",
   "roomsView.header.actions": "Actions",
   "roomsView.header.id": "ID",
@@ -16,5 +17,11 @@
   "zonesView.header.actions": "Actions",
   "zonesView.header.id": "ID",
   "zonesView.header.name": "Name",
-  "zonesView.header.lights": "Lights"
+  "zonesView.header.lights": "Lights",
+  "devicesView.header.actions": "Actions",
+  "devicesView.header.id": "ID",
+  "devicesView.header.name": "Name",
+  "devicesView.header.model": "Model",
+  "devicesView.header.productName": "Product name",
+  "devicesView.header.type": "Type"
 }

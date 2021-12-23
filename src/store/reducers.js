@@ -4,6 +4,7 @@ import headerSlice from './slices/headerSlice';
 import lightsSlice from './slices/lightsSlice';
 import roomsSlice from './slices/roomsSlice';
 import zonesSlice from './slices/zonesSlice';
+import devicesSlice from './slices/devicesSlice';
 
 export default combineReducers({
   commonSlice,
@@ -11,4 +12,5 @@ export default combineReducers({
   lightsSlice,
   roomsSlice,
   zonesSlice,
+  devicesSlice,
 });

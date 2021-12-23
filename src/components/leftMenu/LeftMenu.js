@@ -8,6 +8,7 @@ const LeftMenu = () => {
     { label: 'leftMenu.menuItem.lights', url: '/lights' },
     { label: 'leftMenu.menuItem.rooms', url: '/rooms' },
     { label: 'leftMenu.menuItem.zones', url: '/zones' },
+    { label: 'leftMenu.menuItem.devices', url: '/devices' },
     { label: 'leftMenu.menuItem.settings', url: '/settings' },
   ];
 

@@ -74,6 +74,9 @@ const ZonesView = () => {
               <FormattedMessage id="zonesView.header.id" />
             </th>
             <th>
+              <FormattedMessage id="zonesView.header.groupedLight" />
+            </th>
+            <th>
               <FormattedMessage id="zonesView.header.name" />
             </th>
             <th>
@@ -90,6 +93,7 @@ const ZonesView = () => {
                 <tr key={k}>
                   <td>{editableActions(index)}</td>
                   <td>{group.id}</td>
+                  <td>{group.services.filter((el) => el.rtype === 'grouped_light')[0].rid}</td>
                   <td>{group.metadata.name}</td>
                   <td>{fetchLightById(group.services).join(', ')}</td>
                 </tr>
