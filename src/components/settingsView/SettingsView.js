@@ -1,13 +1,10 @@
 import React from 'react';
 import PanelView from 'components/common/PanelView';
 import PanelViewTabs from 'components/common/PanelViewTabs';
+import { useParams } from 'react-router-dom';
 
-const SettingsView = (props) => {
-  const {
-    match: {
-      params: { sectionId },
-    },
-  } = props;
+const SettingsView = () => {
+  const { sectionId } = useParams();
 
   return (
     <PanelView>

@@ -12,13 +12,30 @@ import DevicesView from '../components/devicesView/DevicesView';
 const AppRoute = () => (
   <App>
     <Routes>
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/lights" element={<LightsView />} />
       <Route path="/rooms" element={<RoomsView />} />
       <Route path="/rooms" element={<RoomsView />} />
       <Route path="/zones" element={<ZonesView />} />
       <Route path="/devices" element={<DevicesView />} />
-      <Route path="/settings/:sectionId" component={SettingsView} />
+      <Route path="/settings" element={<SettingsView />}>
+        <Route
+          element={
+            <main style={{ padding: '1rem' }}>
+              <p>Select an invoice</p>
+            </main>
+          }
+        >
+          <Route
+            path=":settingsId"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>Select an invoice</p>
+              </main>
+            }
+          />
+        </Route>
+      </Route>
       <Route path="*" component={NoMatch} />
     </Routes>
   </App>

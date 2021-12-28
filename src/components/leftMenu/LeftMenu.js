@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const LeftMenu = () => {
   const menuOptions = [
-    { label: 'leftMenu.menuItem.home', url: '/home' },
+    { label: 'leftMenu.menuItem.home', url: '/' },
     { label: 'leftMenu.menuItem.lights', url: '/lights' },
     { label: 'leftMenu.menuItem.rooms', url: '/rooms' },
     { label: 'leftMenu.menuItem.zones', url: '/zones' },

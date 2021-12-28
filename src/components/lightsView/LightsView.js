@@ -32,7 +32,6 @@ const LightsView = () => {
   };
 
   const handleSliderChange = (bri, id) => {
-    console.log(bri, id);
     dispatch(setStateAction({ id, bri }));
   };
 

@@ -26,7 +26,7 @@ html, body, #root {
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > thead > tr > th {
-  padding: 8px;
+  padding: 8px ;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
@@ -409,6 +409,7 @@ label > span {
 /* Table Row */
 .ui.table tr td {
   border-top: 1px solid rgba(34, 36, 38, 0.1);
+  vertical-align: middle;
 }
 .ui.table tr:first-child td {
   border-top: none;
@@ -417,6 +418,10 @@ label > span {
 /* Repeated tbody */
 .ui.table tbody + tbody tr:first-child td {
   border-top: 1px solid rgba(34, 36, 38, 0.1);
+}
+
+.ui.table tbody tr td:first-child {
+  padding-left:8px;
 }
 
 /* Table Cells */

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
@@ -7,11 +7,24 @@ import Loading from 'components/common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ActionIcon from '../common/ActionIcon';
+import HueIcon from '../common/HueIcons/HueIcon';
+
+const DeviceInfoWindow = () => <div>Bonjour</div>;
 
 const DevicesView = () => {
   const dispatch = useDispatch();
   const devices = useSelector(getDevices);
   const isLoadingDevices = useSelector(getLoadingDevices);
+
+  const [isShown, setIsShown] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsShown(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsShown(false);
+  };
 
   const loadData = async () => {
     dispatch(getDevicesAction());
@@ -43,9 +56,6 @@ const DevicesView = () => {
             <th>
               <FormattedMessage id="devicesView.header.actions" />
             </th>
-            {/* <th>
-              <FormattedMessage id="devicesView.header.id" />
-            </th> */}
             <th>
               <FormattedMessage id="devicesView.header.name" />
             </th>
@@ -68,11 +78,13 @@ const DevicesView = () => {
               return (
                 <tr key={k}>
                   <td>{editableActions(index)}</td>
-                  {/* <td>{device.id}</td> */}
                   <td>{device.metadata.name}</td>
                   <td>{device.product_data.model_id}</td>
                   <td>{device.product_data.product_name}</td>
-                  <td>{device.type}</td>
+                  <td>
+                    <HueIcon data={device.product_data} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+                    {isShown && <DeviceInfoWindow />}
+                  </td>
                 </tr>
               );
             })}

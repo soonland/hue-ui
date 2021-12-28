@@ -37,13 +37,17 @@ module.exports = {
         test: /\.(css|scss|sass)$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
-      /* { // for semantic ui css
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-        },
-      },*/
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'images/[hash]-[name].[ext]',
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
