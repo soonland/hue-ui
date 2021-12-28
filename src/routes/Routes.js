@@ -7,7 +7,7 @@ import RoomsView from '../components/roomsView/RoomsView';
 import ZonesView from '../components/zonesView/ZonesView';
 import SettingsView from '../components/settingsView/SettingsView';
 import NoMatch from '../components/noMatch/NoMatch';
-import DevicesView from '../components/devicesView/DevicesView';
+import AccessoriesView from '../components/accessoriesView/AccessoriesView';
 
 const AppRoute = () => (
   <App>
@@ -17,7 +17,7 @@ const AppRoute = () => (
       <Route path="/rooms" element={<RoomsView />} />
       <Route path="/rooms" element={<RoomsView />} />
       <Route path="/zones" element={<ZonesView />} />
-      <Route path="/devices" element={<DevicesView />} />
+      <Route path="/accessories" element={<AccessoriesView />} />
       <Route path="/settings" element={<SettingsView />}>
         <Route
           element={

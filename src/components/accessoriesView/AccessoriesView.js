@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
-import { getDevices, getLoading as getLoadingDevices, getDevicesAction } from 'store/slices/devicesSlice';
+import { getAccessories, getLoading as getLoadingAccessories, getAccessoriesAction } from 'store/slices/accessoriesSlice';
 import Loading from 'components/common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +11,10 @@ import HueIcon from '../common/HueIcons/HueIcon';
 
 const DeviceInfoWindow = () => <div>Bonjour</div>;
 
-const DevicesView = () => {
+const AccessoriesView = () => {
   const dispatch = useDispatch();
-  const devices = useSelector(getDevices);
-  const isLoadingDevices = useSelector(getLoadingDevices);
+  const accessories = useSelector(getAccessories);
+  const isLoadingAccessories = useSelector(getLoadingAccessories);
 
   const [isShown, setIsShown] = useState(false);
 
@@ -27,53 +27,53 @@ const DevicesView = () => {
   };
 
   const loadData = async () => {
-    dispatch(getDevicesAction());
+    dispatch(getAccessoriesAction());
   };
 
   useEffect(() => {
     loadData();
   }, []);
 
-  const onClickDevices = async (action) => {
+  const onClickAccessories = async (action) => {
     if (action === 'edit') {
-      // dispatch(deleteDevicesAction({ id: devices[index].data.id, index }));
+      // dispatch(deleteAccessoriesAction({ id: accessories[index].data.id, index }));
     }
   };
 
   const editableActions = (index) => (
-    <ActionIcon onClick={onClickDevices} action="edit" index={index}>
+    <ActionIcon onClick={onClickAccessories} action="edit" index={index}>
       <FontAwesomeIcon icon={faEdit} />
     </ActionIcon>
   );
 
-  if (isLoadingDevices) return <Loading />;
+  if (isLoadingAccessories) return <Loading />;
   return (
     <div>
-      <Title level="h1" id="leftMenu.menuItem.devices" />
+      <Title level="h1" id="leftMenu.menuItem.accessories" />
       <table className="ui selectable table">
         <thead>
           <tr>
             <th>
-              <FormattedMessage id="devicesView.header.actions" />
+              <FormattedMessage id="accessoriesView.header.actions" />
             </th>
             <th>
-              <FormattedMessage id="devicesView.header.name" />
+              <FormattedMessage id="accessoriesView.header.name" />
             </th>
             <th>
-              <FormattedMessage id="devicesView.header.model" />
+              <FormattedMessage id="accessoriesView.header.model" />
             </th>
             <th>
-              <FormattedMessage id="devicesView.header.productName" />
+              <FormattedMessage id="accessoriesView.header.productName" />
             </th>
             <th>
-              <FormattedMessage id="devicesView.header.type" />
+              <FormattedMessage id="accessoriesView.header.type" />
             </th>
           </tr>
         </thead>
         <tbody>
-          {devices &&
-            devices.data &&
-            devices.data.map((device, index) => {
+          {accessories &&
+            accessories.data &&
+            accessories.data.map((device, index) => {
               const k = `id${index}`;
               return (
                 <tr key={k}>
@@ -94,4 +94,4 @@ const DevicesView = () => {
   );
 };
 
-export default DevicesView;
+export default AccessoriesView;
