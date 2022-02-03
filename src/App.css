@@ -26,7 +26,7 @@ html, body, #root {
 .table > tfoot > tr > th,
 .table > thead > tr > td,
 .table > thead > tr > th {
-  padding: 8px;
+  padding: 8px ;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
@@ -37,10 +37,14 @@ html, body, #root {
 }
 
 .menuHeader {
-  display: inline-block;
+  /* display: inline-block; */
   background-color: var(--mainColor);
   font-weight: bold;
-  width: 100%;
+  width: 150px;
+  height:100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .menuHeader a {
@@ -56,14 +60,13 @@ html, body, #root {
 }
 
 .menuHeader > div {
-  display: inline-block;
-  padding: 15px 10px;
-  height:100%;
+  display: block;
+  padding: 10px 25px;
 }
 
 .menuHeader > div:hover {
-  display: inline-block;
-  padding: 15px 10px;
+  display: block;
+  padding: 10px 25px;
   background-color: var(--color);
   color:#000;
 }
@@ -90,6 +93,7 @@ html, body, #root {
 
 #content {
   margin:10px;
+  width:100%;
 }
 
 .link-button {
@@ -266,7 +270,7 @@ html, body, #root {
   background: var(--tabColor);
   border: solid rgb(75, 40, 109);
   border-width: 1px 0 1px 1px;
-  margin-rigth: -1px;
+  margin-right: -1px;
 }
 
 .tab-list-active > a {
@@ -405,6 +409,7 @@ label > span {
 /* Table Row */
 .ui.table tr td {
   border-top: 1px solid rgba(34, 36, 38, 0.1);
+  vertical-align: middle;
 }
 .ui.table tr:first-child td {
   border-top: none;
@@ -413,6 +418,10 @@ label > span {
 /* Repeated tbody */
 .ui.table tbody + tbody tr:first-child td {
   border-top: 1px solid rgba(34, 36, 38, 0.1);
+}
+
+.ui.table tbody tr td:first-child {
+  padding-left:8px;
 }
 
 /* Table Cells */

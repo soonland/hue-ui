@@ -18,4 +18,4 @@ export const setStateService = async (data) => {
   return { result: response.data };
 };
 
-export default { getLightsService, setStateService };
+export default { getLightsService };

@@ -4,7 +4,11 @@
   "common.create": "Créer",
   "common.save": "Enregistrer",
   "common.cancel": "Annuler",
-  "topMenu.header.home": "Accueil",
-  "topMenu.header.lights": "Lumières",
-  "topMenu.header.settings": "Configuration"
+  "leftMenu.menuItem.home": "Accueil",
+  "leftMenu.menuItem.lights": "Lumières",
+  "leftMenu.menuItem.settings": "Configuration",
+  "roomsView.header.actions": "Actions",
+  "roomsView.header.id": "ID",
+  "roomsView.header.name": "Nom",
+  "roomsView.header.lights": "Lumières"
 }
