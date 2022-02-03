@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import Tippy from '@tippyjs/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
@@ -9,22 +10,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import ActionIcon from '../common/ActionIcon';
 import HueIcon from '../common/HueIcons/HueIcon';
 
-const DeviceInfoWindow = () => <div>Bonjour</div>;
-
 const AccessoriesView = () => {
   const dispatch = useDispatch();
   const accessories = useSelector(getAccessories);
   const isLoadingAccessories = useSelector(getLoadingAccessories);
-
-  const [isShown, setIsShown] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsShown(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsShown(false);
-  };
 
   const loadData = async () => {
     dispatch(getAccessoriesAction());
@@ -82,8 +71,9 @@ const AccessoriesView = () => {
                   <td>{device.product_data.model_id}</td>
                   <td>{device.product_data.product_name}</td>
                   <td>
-                    <HueIcon data={device.product_data} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
-                    {isShown && <DeviceInfoWindow />}
+                    <Tippy>
+                      <HueIcon data={device.product_data} />
+                    </Tippy>
                   </td>
                 </tr>
               );
