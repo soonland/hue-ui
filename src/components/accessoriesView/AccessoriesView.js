@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Tippy from '@tippyjs/react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
@@ -71,9 +70,7 @@ const AccessoriesView = () => {
                   <td>{device.product_data.model_id}</td>
                   <td>{device.product_data.product_name}</td>
                   <td>
-                    <Tippy>
-                      <HueIcon data={device.product_data} />
-                    </Tippy>
+                    <HueIcon data={device.product_data} />
                   </td>
                 </tr>
               );
