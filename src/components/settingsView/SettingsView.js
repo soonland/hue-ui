@@ -9,10 +9,10 @@ const SettingsView = () => {
   return (
     <PanelView>
       <PanelViewTabs activeSection={sectionId}>
-        <div label="settingsView.tab.billing" section="billing" toLink="/settings/billing">
+        <div label="settingsView.tab.config" section="config" toLink="/settings/config">
           Salut
         </div>
-        <div label="settingsView.tab.employees" section="employees" toLink="/settings/employees">
+        <div label="settingsView.tab.notifications" section="notifications" toLink="/settings/notifications">
           Bonjour
         </div>
       </PanelViewTabs>

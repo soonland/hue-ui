@@ -11,21 +11,21 @@ const PanelViewTabs = ({ children, activeSection }) => {
 
   const tabs = [];
   let content = '';
-  children.forEach((child) => {
+  let defaultContent = false;
+  children.forEach((child, index) => {
     const { label, indent, section, toLink } = child.props;
 
     if (indent === 'true') tabs.push(<PanelViewSubTab key={label} label={label} toLink={toLink} />);
     else tabs.push(<PanelViewTab key={label} label={label} toLink={toLink} />);
 
     if (activeSection === section) content = child.props.children;
+    if (index === 0) defaultContent = child.props.children;
   });
 
   return (
     <div style={{ width: '100%' }}>
-      <div className="panelViewTabs">
-        <ol style={{ paddingLeft: '0px' }}>{tabs}</ol>
-      </div>
-      <div className="panelViewContent">{content}</div>
+      <div className="panelViewTabs">{tabs}</div>
+      <div className="panelViewContent">{content || defaultContent}</div>
     </div>
   );
 };

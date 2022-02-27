@@ -18,7 +18,7 @@ const App = ({ children }) => {
       <CSSReset />
       <div id="content">
         <LeftMenu />
-        <div style={{ marginLeft: '160px' }}>{children}</div>
+        <div style={{ marginLeft: '160px', marginRight: '25px' }}>{children}</div>
       </div>
     </>
   );

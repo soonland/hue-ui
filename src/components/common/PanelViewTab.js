@@ -10,11 +10,11 @@ const PanelViewTab = ({ activeTab, label, toLink }) => {
   }
 
   return (
-    <li className={css}>
+    <div className={css}>
       <NavLink to={toLink}>
         <FormattedMessage id={label} />
       </NavLink>
-    </li>
+    </div>
   );
 };
 
