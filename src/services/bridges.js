@@ -6,8 +6,23 @@ export const getBridgesService = async () => {
     api: { baseUrl, endpoint },
   } = config;
   const response = await axios.get(`${baseUrl}${endpoint}/bridges`);
-  console.log(response);
   return { result: response.data };
 };
 
-export default { getBridgesService };
+export const getSearchNewLightsService = async () => {
+  const {
+    api: { baseUrl, endpoint },
+  } = config;
+  const response = await axios.get(`${baseUrl}${endpoint}/bridges/searchNewLights`);
+  return { result: response.data };
+};
+
+export const getNewLightsService = async () => {
+  const {
+    api: { baseUrl, endpoint },
+  } = config;
+  const response = await axios.get(`${baseUrl}${endpoint}/bridges/newLights`);
+  return { result: response.data };
+};
+
+export default { getBridgesService, getSearchNewLightsService, getNewLightsService };
