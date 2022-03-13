@@ -23,5 +23,7 @@
   "accessoriesView.header.name": "Name",
   "accessoriesView.header.model": "Model",
   "accessoriesView.header.productName": "Product name",
-  "accessoriesView.header.type": "Type"
+  "accessoriesView.header.type": "Type",
+  "settingsView.tab.config": "Configuration",
+  "settingsView.tab.notifications": "Notifications"
 }

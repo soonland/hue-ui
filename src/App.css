@@ -36,7 +36,14 @@ html, body, #root {
   background:rgba(251, 232, 166, 0.5);
 }
 
-.menuHeader {
+svg#logo {
+  color: #fff;
+  margin: auto;
+  width: 100%;
+  padding: 15px 0px 0px;
+}
+
+.leftMenu {
   /* display: inline-block; */
   background-color: var(--mainColor);
   font-weight: bold;
@@ -240,22 +247,21 @@ html, body, #root {
 }
 
 .panelViewTabs {
-  float:left;
-  width:220px;
+  display: block;
+  margin-bottom: 10px;
+  width:100%;
 }
 
 .panelViewContent {
   padding: 10px;
   vertical-align: top;
-  margin-left:220px;
   border: 1px solid var(--mainColor);
   border-radius: 0 0.125rem 0.125rem 0.125rem !important;
 }
 
 .tab-list-item {
+  display: inline-block;
   background-color: var(--mainColor);
-  display:block;
-  list-style: none;
   padding: 0.5rem 0.75rem;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 0.125rem 0 0 0.125rem !important;
@@ -267,6 +273,7 @@ html, body, #root {
 }
 
 .tab-list-active {
+  display: inline-block;
   background: var(--tabColor);
   border: solid rgb(75, 40, 109);
   border-width: 1px 0 1px 1px;

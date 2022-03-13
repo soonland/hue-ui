@@ -18,24 +18,8 @@ const AppRoute = () => (
       <Route path="/rooms" element={<RoomsView />} />
       <Route path="/zones" element={<ZonesView />} />
       <Route path="/accessories" element={<AccessoriesView />} />
-      <Route path="/settings" element={<SettingsView />}>
-        <Route
-          element={
-            <main style={{ padding: '1rem' }}>
-              <p>Select an invoice</p>
-            </main>
-          }
-        >
-          <Route
-            path=":settingsId"
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>Select an invoice</p>
-              </main>
-            }
-          />
-        </Route>
-      </Route>
+      <Route path="/settings" element={<SettingsView />} />
+      <Route path="/settings/:sectionId" element={<SettingsView />} />
       <Route path="*" component={NoMatch} />
     </Routes>
   </App>

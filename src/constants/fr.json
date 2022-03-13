@@ -10,5 +10,7 @@
   "roomsView.header.actions": "Actions",
   "roomsView.header.id": "ID",
   "roomsView.header.name": "Nom",
-  "roomsView.header.lights": "Lumières"
+  "roomsView.header.lights": "Lumières",
+  "settingsView.tab.config": "Configuration",
+  "settingsView.tab.notifications": "Notifications"
 }
