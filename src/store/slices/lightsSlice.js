@@ -15,7 +15,7 @@ export const setStateAction = createAsyncThunk('common/setState', async (data, t
 
 const slice = createSlice({
   name: 'lights',
-  initialState: { loadingCategories: false, loading: false, products: [], categories: [] },
+  initialState: { loading: false, lights: null },
   reducers: {},
   extraReducers: {
     // getProducts
