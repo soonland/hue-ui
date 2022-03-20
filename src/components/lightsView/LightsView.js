@@ -39,16 +39,13 @@ const LightsView = () => {
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.lights" />
-      <div>{JSON.stringify(color)}</div>
-      <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
+      {/* <CirclePicker color={color} onChangeComplete={handleChangeComplete} /> */}
       {lights &&
         lights.data &&
         lights.data.map((data, index) => {
           const k = `id${index}`;
           return (
-            <div key={k} style={{ margin: '1em', display: 'inline-block' }}>
-              <Light onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={data} index={index} />
-            </div>
+            <Light key={k} onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={data} index={index} />
           );
         })}
     </div>

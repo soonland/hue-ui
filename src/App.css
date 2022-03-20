@@ -320,6 +320,35 @@ label > span {
   display: inline-block;
 }
 
+.light {
+  border: 3px solid #dddddd;
+  display: inline-block;;
+  min-width: 200px;
+  min-height: 200px;
+  padding: 30px 10px;
+  margin: 0 10px;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.5s;
+}
+
+.light:hover {
+  border: 3px solid #275b28;
+}
+
+.light .switch {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+} 
+
+.light .bulb {
+  margin: 0 auto;
+  padding: 25px 10px;
+  width: auto;
+  text-align: center;
+}
+
 /* Prototype */
 .ui.table {
   width: 100%;
