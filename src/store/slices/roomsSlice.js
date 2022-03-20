@@ -21,24 +21,24 @@ export const setRoomStateAction = createAsyncThunk('common/setRoomState', async 
 
 const slice = createSlice({
   name: 'rooms',
-  initialState: { loadingCategories: false, loading: false, products: [], categories: [] },
+  initialState: { loading: false, rooms: null },
   reducers: {},
   extraReducers: {
     [getRoomsAction.pending]: (state) => {
-      state.loadingRoom = true;
+      state.loading = true;
     },
     [getRoomsAction.fulfilled]: (state, action) => {
-      state.loadingRoom = false;
+      state.loading = false;
       state.rooms = action.payload.result;
     },
     [getRoomsAction.rejected]: (state, action) => {
-      state.loadingRoom = false;
+      state.loading = false;
       state.error = action.error.message;
     },
   },
 });
 
 export const getRooms = (state) => state.roomsSlice.rooms;
-export const getLoading = (state) => state.roomsSlice.loadingRoom;
+export const getLoading = (state) => state.roomsSlice.loading;
 
 export default slice.reducer;

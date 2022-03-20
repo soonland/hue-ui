@@ -15,24 +15,24 @@ export const setAccessoriesStateAction = createAsyncThunk('common/setAccessories
 
 const slice = createSlice({
   name: 'accessories',
-  initialState: { loadingCategories: false, loading: false, products: [], categories: [] },
+  initialState: { loading: false, accessories: null },
   reducers: {},
   extraReducers: {
     [getAccessoriesAction.pending]: (state) => {
-      state.loadingAccessories = true;
+      state.loading = true;
     },
     [getAccessoriesAction.fulfilled]: (state, action) => {
-      state.loadingAccessories = false;
+      state.loading = false;
       state.accessories = action.payload.result;
     },
     [getAccessoriesAction.rejected]: (state, action) => {
-      state.loadingAccessories = false;
+      state.loading = false;
       state.error = action.error.message;
     },
   },
 });
 
 export const getAccessories = (state) => state.accessoriesSlice.accessories;
-export const getLoading = (state) => state.accessoriesSlice.loadingAccessories;
+export const getLoading = (state) => state.accessoriesSlice.loading;
 
 export default slice.reducer;
