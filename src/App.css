@@ -320,13 +320,39 @@ label > span {
   display: inline-block;
 }
 
-.light {
+.room {
   border: 3px solid #dddddd;
-  display: inline-block;;
+  display: inline-block;
   min-width: 200px;
   min-height: 200px;
   padding: 30px 10px;
   margin: 0 10px;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.5s;
+}
+
+.room .name {
+  font-weight: bold;
+}
+
+.room .switch {
+  position: absolute !important;
+  top: 10px;
+  right: 10px;
+}
+
+.room:hover {
+  border: 3px solid #275b28;
+}
+
+.light {
+  border: 3px solid #dddddd;
+  display: inline-block;
+  min-width: 200px;
+  min-height: 200px;
+  padding: 30px 10px;
+  margin: 10px 10px 0;
   border-radius: 20px;
   position: relative;
   transition: 0.5s;
@@ -340,13 +366,22 @@ label > span {
   position: absolute !important;
   top: 10px;
   right: 10px;
-} 
+}
+
+.light .name {
+  font-weight: bold;
+}
 
 .light .bulb {
   margin: 0 auto;
   padding: 25px 10px;
   width: auto;
   text-align: center;
+}
+
+.light .device {
+  padding: 0.2rem;
+  font-size: 0.6rem;
 }
 
 /* Prototype */
