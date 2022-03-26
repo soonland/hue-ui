@@ -55,12 +55,12 @@ const LightsView = () => {
         lights.data && rooms.data && groupedLight.data &&
         rooms.data.map((room, index) => {
           const k = `room${index}`;
-          const glight = groupedLight.data.filter((el) => el.id === room.grouped_services[0].rid)[0];
+          const glight = groupedLight.data.filter((el) => el.id === room.services[0].rid)[0];
           return (
             <div key={k} className='room'>
               <div className='name'>{room.metadata.name}</div>
               <div className='switch'>
-                <Switch onChange={handleChangeRoom} checked={glight?.on.on || false} id={room.grouped_services[0].rid} />
+                <Switch onChange={handleChangeRoom} checked={glight?.on.on || false} id={room.services[0].rid} />
               </div>
               {lights.data.map((light, index) => {
                 const k = `id${index}`;
