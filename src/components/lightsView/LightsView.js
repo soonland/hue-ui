@@ -9,6 +9,10 @@ import { getDevicesAction, getDevices } from 'store/slices/devicesSlice';
 import { getLightsAction, setStateAction, getLights } from 'store/slices/lightsSlice';
 import { getRooms, getRoomsAction, setRoomStateAction } from 'store/slices/roomsSlice';
 import { getGroupedLight, getGroupedLightAction, setGroupedLightStateAction } from '../../store/slices/groupedLightSlice';
+import DropdownMenu from '../common/DropdownMenu';
+import ActionIcon from '../common/ActionIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 const LightsView = () => {
   const [color, setColor] = useState({ background: '#fff' });
@@ -59,27 +63,38 @@ const LightsView = () => {
     }
   }, [rooms, lights]);
 
+  const [value, setValue] = useState('');
+  const onChange = (ev) => {
+    setValue(ev.target.value);
+  };
   // if (isLoading) return <Loading />;
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.lights" />
       {/* <CirclePicker color={color} onChangeComplete={handleChangeComplete} /> */}
-      {lights?.data && unassignedLights?.length > 0 && unassignedLights.map((unassignedLight, index) => {
+      {lights?.data && rooms?.data && unassignedLights?.length > 0 && unassignedLights.map((unassignedLight, index) => {
         const k = `unassigned${index}`;
         const light = lights.data.filter(el => el.device === unassignedLight)[0];
-        console.log('light =>', light);
+        const options = rooms.data.map(el => {
+          return { text: el.metadata.name, value: el.id };
+        });
+        options.unshift({ text: 'veuillez selectionner', value: '', disabled: true })
         return (
             <div key={k} className='room'>
               <div className='name'>Unassigned Lights</div>
-              <Light key={k} onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
-            </div>
+              <Light key={k} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
+            <DropdownMenu options={options} value='' onChange={onChange} />
+              <ActionIcon onClick={() => updateLight(light)} action="save" index={index}>
+                <FontAwesomeIcon icon={faSave} />
+              </ActionIcon>
+          </div>
         );
       })}
       {lights && rooms && groupedLight &&
         lights.data && rooms.data && groupedLight.data &&
         rooms.data.map((room, index) => {
           const k = `room${index}`;
-          const glight = groupedLight.data.filter((el) => el.id === room.services[0].rid)[0];
+          const glight = groupedLight.data.filter(el => el.id === room.services[0].rid)[0];
           return (
             <div key={k} className='room'>
               <div className='name'>{room.metadata.name}</div>
