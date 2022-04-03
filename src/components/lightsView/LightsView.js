@@ -5,6 +5,7 @@ import Title from 'components/common/Title';
 import { CirclePicker } from 'react-color';
 import Switch from 'react-switch';
 import Light from '../common/Light';
+import { getDevicesAction, getDevices } from 'store/slices/devicesSlice';
 import { getLightsAction, setStateAction, getLights } from 'store/slices/lightsSlice';
 import { getRooms, getRoomsAction, setRoomStateAction } from 'store/slices/roomsSlice';
 import { getGroupedLight, getGroupedLightAction, setGroupedLightStateAction } from '../../store/slices/groupedLightSlice';
@@ -13,11 +14,14 @@ const LightsView = () => {
   const [color, setColor] = useState({ background: '#fff' });
   const dispatch = useDispatch();
   const lights = useSelector(getLights);
+  const devices = useSelector(getDevices);
   const rooms = useSelector(getRooms);
   const groupedLight = useSelector(getGroupedLight);
+  const [unassignedLights, setUnassignedLights] = useState([]);
 
   const loadData = async () => {
     dispatch(getRoomsAction());
+    dispatch(getDevicesAction());
     dispatch(getLightsAction());
     dispatch(getGroupedLightAction());
   };
@@ -39,18 +43,38 @@ const LightsView = () => {
   };
 
   const handleChangeRoom = (checked, event, id) => {
-    dispatch(setGroupedLightStateAction({ id, on: checked }));
+    dispatch(setGroupedLightStateAction({ id, on: checked })).then(() => dispatch(getLightsAction()));
   };
 
   const handleSliderChange = (bri, id) => {
     dispatch(setStateAction({ id, bri }));
   };
 
+  useEffect(() => {
+    if (rooms?.data?.length > 0 && lights?.data?.length > 0) {
+      const devicesList = lights.data.map(el => el.device);
+      const assignedLightsList = rooms.data.map(el => el.children.map(el2 => el2.rid)).flat();
+      const l = devicesList.filter(el => !assignedLightsList.includes(el));
+      setUnassignedLights(l);
+    }
+  }, [rooms, lights]);
+
   // if (isLoading) return <Loading />;
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.lights" />
       {/* <CirclePicker color={color} onChangeComplete={handleChangeComplete} /> */}
+      {lights?.data && unassignedLights?.length > 0 && unassignedLights.map((unassignedLight, index) => {
+        const k = `unassigned${index}`;
+        const light = lights.data.filter(el => el.device === unassignedLight)[0];
+        console.log('light =>', light);
+        return (
+            <div key={k} className='room'>
+              <div className='name'>Unassigned Lights</div>
+              <Light key={k} onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
+            </div>
+        );
+      })}
       {lights && rooms && groupedLight &&
         lights.data && rooms.data && groupedLight.data &&
         rooms.data.map((room, index) => {
