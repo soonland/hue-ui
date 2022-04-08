@@ -22,7 +22,16 @@ export const setStateService = async (data) => {
     api: { baseUrl, endpoint },
   } = config;
   const { id } = data;
-  const response = await axios.post(`${baseUrl}${endpoint}/rooms/${id}`, data);
+  const response = await axios.post(`${baseUrl}${endpoint}/rooms/${id}`, { ...data.children });
+  return { result: response.data };
+};
+
+export const updateRoomService = async (data) => {
+  const {
+    api: { baseUrl, endpoint },
+  } = config;
+  const { id } = data;
+  const response = await axios.put(`${baseUrl}${endpoint}/rooms/${id}`, data);
   return { result: response.data };
 };
 

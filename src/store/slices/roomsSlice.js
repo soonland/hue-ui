@@ -1,6 +1,6 @@
 /* eslint no-param-reassign: ["error", {"props": false}] */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getRoomsService, deleteService, setStateService } from 'services/rooms';
+import { getRoomsService, deleteService, setStateService, updateRoomService } from 'services/rooms';
 
 export const getRoomsAction = createAsyncThunk('common/getRooms', async (search) => {
   const response = await getRoomsService(search);
@@ -19,6 +19,12 @@ export const setRoomStateAction = createAsyncThunk('common/setRoomState', async 
   return response;
 });
 
+export const updateRoomAction = createAsyncThunk('common/updateRoomAction', async (data, thunkApi) => {
+  const response = await updateRoomService(data);
+  thunkApi.dispatch(getRoomsAction());
+  return response;
+});
+
 const slice = createSlice({
   name: 'rooms',
   initialState: { loading: false, rooms: null },
@@ -32,6 +38,17 @@ const slice = createSlice({
       state.rooms = action.payload.result;
     },
     [getRoomsAction.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error.message;
+    },
+    [updateRoomAction.pending]: (state) => {
+      state.loading = true;
+    },
+    [updateRoomAction.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.updatedRoom = action.payload.result;
+    },
+    [updateRoomAction.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error.message;
     },
