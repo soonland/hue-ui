@@ -21,24 +21,24 @@ export const setZoneStateAction = createAsyncThunk('common/setZoneState', async 
 
 const slice = createSlice({
   name: 'zones',
-  initialState: { loadingCategories: false, loading: false, products: [], categories: [] },
+  initialState: { loading: false, zones: null },
   reducers: {},
   extraReducers: {
     [getZonesAction.pending]: (state) => {
-      state.loadingZone = true;
+      state.loading = true;
     },
     [getZonesAction.fulfilled]: (state, action) => {
-      state.loadingZone = false;
+      state.loading = false;
       state.zones = action.payload.result;
     },
     [getZonesAction.rejected]: (state, action) => {
-      state.loadingZone = false;
+      state.loading = false;
       state.error = action.error.message;
     },
   },
 });
 
 export const getZones = (state) => state.zonesSlice.zones;
-export const getLoading = (state) => state.zonesSlice.loadingZone;
+export const getLoading = (state) => state.zonesSlice.loading;
 
 export default slice.reducer;

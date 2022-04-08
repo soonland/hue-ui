@@ -25,7 +25,7 @@ const RoomsView = () => {
     loadData();
   }, []);
 
-  const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.id}`)).map((el2) => el2.metadata.name);
+  const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.device}`)).map((el2) => el2.name);
 
   const onClickRoom = async (action, index) => {
     if (action === 'delete') {
@@ -91,7 +91,7 @@ const RoomsView = () => {
                   <td>{editableActions(index)}</td>
                   <td>{group.id}</td>
                   <td>{group.metadata.name}</td>
-                  <td>{fetchLightById(group.services).join(', ')}</td>
+                  <td>{fetchLightById(group.children).join(', ')}</td>
                 </tr>
               );
             })}

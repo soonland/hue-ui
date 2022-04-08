@@ -1,6 +1,8 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
 const LeftMenu = () => {
   const menuOptions = [
@@ -24,7 +26,12 @@ const LeftMenu = () => {
     );
   });
 
-  return <div className="menuHeader">{menuHeader}</div>;
+  return (
+    <div className="leftMenu">
+      <FontAwesomeIcon icon={faLightbulb} size="4x" id="logo" />
+      <div className="menuHeader">{menuHeader}</div>
+    </div>
+  );
 };
 
 export default LeftMenu;

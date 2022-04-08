@@ -25,7 +25,7 @@ const ZonesView = () => {
     loadData();
   }, []);
 
-  const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.id}`)).map((el2) => el2.metadata.name);
+  const fetchLightById = (data) => lights.data.filter((el) => data.map((el3) => el3.rid).includes(`${el.id}`)).map((el2) => el2.name);
 
   const onClickZone = async (action, index) => {
     if (action === 'delete') {
@@ -95,7 +95,7 @@ const ZonesView = () => {
                   <td>{group.id}</td>
                   <td>{group.services.filter((el) => el.rtype === 'grouped_light')[0].rid}</td>
                   <td>{group.metadata.name}</td>
-                  <td>{fetchLightById(group.services).join(', ')}</td>
+                  <td>{fetchLightById(group.children).join(', ')}</td>
                 </tr>
               );
             })}

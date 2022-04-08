@@ -11,6 +11,7 @@ module.exports = merge(common, {
   mode: 'development',
   devServer: {
     liveReload: true, // refreshes the page on change
+    watchFiles: ['src/**/*.js', 'src/**/*.css'],
     open: false,
     port: 8080,
     historyApiFallback: {
