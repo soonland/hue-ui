@@ -95,7 +95,7 @@ const ZonesView = () => {
                   <td>{group.id}</td>
                   <td>{group.services.filter((el) => el.rtype === 'grouped_light')[0].rid}</td>
                   <td>{group.metadata.name}</td>
-                  <td>{fetchLightById(group.services).join(', ')}</td>
+                  <td>{fetchLightById(group.children).join(', ')}</td>
                 </tr>
               );
             })}

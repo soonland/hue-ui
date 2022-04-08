@@ -9,12 +9,16 @@ import { getDevicesAction, getDevices } from 'store/slices/devicesSlice';
 import { getLightsAction, setStateAction, getLights } from 'store/slices/lightsSlice';
 import { getRooms, getRoomsAction, setRoomStateAction } from 'store/slices/roomsSlice';
 import { getGroupedLight, getGroupedLightAction, setGroupedLightStateAction } from '../../store/slices/groupedLightSlice';
+import DropdownMenu from '../common/DropdownMenu';
+import ActionIcon from '../common/ActionIcon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { updateRoomAction } from '../../store/slices/roomsSlice';
 
 const LightsView = () => {
   const [color, setColor] = useState({ background: '#fff' });
   const dispatch = useDispatch();
   const lights = useSelector(getLights);
-  const devices = useSelector(getDevices);
   const rooms = useSelector(getRooms);
   const groupedLight = useSelector(getGroupedLight);
   const [unassignedLights, setUnassignedLights] = useState([]);
@@ -51,47 +55,81 @@ const LightsView = () => {
   };
 
   useEffect(() => {
-    if (rooms?.data?.length > 0 && lights?.data?.length > 0) {
-      const devicesList = lights.data.map(el => el.device);
-      const assignedLightsList = rooms.data.map(el => el.children.map(el2 => el2.rid)).flat();
-      const l = devicesList.filter(el => !assignedLightsList.includes(el));
+    if (rooms && rooms.data && rooms.data.length > 0 && lights && lights.data && lights.data.length > 0) {
+      const devicesList = lights.data.map((el) => el.device);
+      const assignedLightsList = rooms.data.map((el) => el.children.map((el2) => el2.rid)).flat();
+      const l = devicesList.filter((el) => !assignedLightsList.includes(el));
       setUnassignedLights(l);
     }
   }, [rooms, lights]);
+
+  const [value, setValue] = useState('');
+  const onChange = (ev) => {
+    setValue(ev.target.value);
+  };
+
+  const updateRoom = (light) => {
+    const currentLights = rooms.data.filter((el) => el.id === value)[0].children;
+    const newLights = [...currentLights, { rid: light.device, rtype: 'device' }];
+    dispatch(updateRoomAction({ children: newLights, id: value })).then(() => dispatch(getLightsAction()));
+  };
 
   // if (isLoading) return <Loading />;
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.lights" />
       {/* <CirclePicker color={color} onChangeComplete={handleChangeComplete} /> */}
-      {lights?.data && unassignedLights?.length > 0 && unassignedLights.map((unassignedLight, index) => {
-        const k = `unassigned${index}`;
-        const light = lights.data.filter(el => el.device === unassignedLight)[0];
-        console.log('light =>', light);
-        return (
-            <div key={k} className='room'>
-              <div className='name'>Unassigned Lights</div>
-              <Light key={k} onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
+      {lights &&
+        lights.data &&
+        rooms &&
+        rooms.data &&
+        unassignedLights.length > 0 &&
+        unassignedLights.map((unassignedLight, index) => {
+          const k = `unassigned${index}`;
+          const light = lights.data.filter((el) => el.device === unassignedLight)[0];
+          const options = rooms.data.map((el) => {
+            return { text: el.metadata.name, value: el.id };
+          });
+          options.unshift({ text: 'veuillez selectionner', value: '', disabled: true });
+          return (
+            <div key={k} className="room">
+              <div className="name">Unassigned Lights</div>
+              <Light key={k} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
+              <DropdownMenu options={options} value={value} onChange={onChange} />
+              <ActionIcon onClick={() => updateRoom(light)} action="save" index={index}>
+                <FontAwesomeIcon icon={faSave} />
+              </ActionIcon>
             </div>
-        );
-      })}
-      {lights && rooms && groupedLight &&
-        lights.data && rooms.data && groupedLight.data &&
+          );
+        })}
+      {lights &&
+        rooms &&
+        groupedLight &&
+        lights.data &&
+        rooms.data &&
+        groupedLight.data &&
         rooms.data.map((room, index) => {
           const k = `room${index}`;
           const glight = groupedLight.data.filter((el) => el.id === room.services[0].rid)[0];
           return (
-            <div key={k} className='room'>
-              <div className='name'>{room.metadata.name}</div>
-              <div className='switch'>
-                <Switch onChange={handleChangeRoom} checked={glight?.on.on || false} id={room.services[0].rid} />
+            <div key={k} className="room">
+              <div className="name">{room.metadata.name}</div>
+              <div className="switch">
+                <Switch onChange={handleChangeRoom} checked={glight.on.on || false} id={room.services[0].rid} />
               </div>
               {lights.data.map((light, index) => {
                 const k = `id${index}`;
                 const roomLights = room.children.filter((el) => el.rid === light.device);
                 if (roomLights && roomLights.length > 0) {
                   return (
-                    <Light key={k} onClickLight={onClickLight} handleChange={handleChange} handleSliderChange={handleSliderChange} data={light} index={index} />
+                    <Light
+                      key={k}
+                      onClickLight={onClickLight}
+                      handleChange={handleChange}
+                      handleSliderChange={handleSliderChange}
+                      data={light}
+                      index={index}
+                    />
                   );
                 }
                 return null;
