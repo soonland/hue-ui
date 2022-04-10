@@ -18,12 +18,21 @@ export const setStateService = async (data) => {
   return { result: response.data };
 };
 
+export const addNewZone = async (data) => {
+  const {
+    api: { baseUrl, endpoint },
+  } = config;
+  const response = await axios.post(`${baseUrl}${endpoint}/zones`, data);
+  console.log('response :', response);
+  return { result: response.data };
+};
+
 export const deleteService = async (data) => {
   const {
     api: { baseUrl, endpoint },
   } = config;
   const { id } = data;
-  const response = await axios.post(`${baseUrl}${endpoint}/zones/${id}`, data);
+  const response = await axios.delete(`${baseUrl}${endpoint}/zones/${id}`);
   return { result: response.data };
 };
 

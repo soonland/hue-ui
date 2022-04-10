@@ -7,7 +7,11 @@ import { getLights, getLoading as getLoadingLights, getLightsAction } from 'stor
 import Loading from 'components/common/Loading';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Field, Form, Formik } from 'formik';
 import ActionIcon from '../common/ActionIcon';
+import RadioGroupButton from '../common/RadioGroupButton';
+import { addNewZoneAction } from '../../store/slices/zonesSlice';
+import DropdownMenu from '../common/DropdownMenu';
 
 const ZonesView = () => {
   const dispatch = useDispatch();
@@ -29,9 +33,9 @@ const ZonesView = () => {
 
   const onClickZone = async (action, index) => {
     if (action === 'delete') {
-      dispatch(deleteZoneAction({ id: zones[index].data.id, index }));
+      dispatch(deleteZoneAction({ id: zones.data[index].id, index }));
     } else if (action === 'switch') {
-      dispatch(setZoneStateAction({ id: zones[index].data.id, on: !zones[index].data.state.all_on }));
+      dispatch(setZoneStateAction({ id: zones.data[index].id, on: !zones.data[index].state.all_on }));
     }
     // else if (action === 'edit') {
     //   setEditableProducts({
@@ -60,10 +64,38 @@ const ZonesView = () => {
     </>
   );
 
+  const onSubmit = (values) => {
+    const obj = {
+      type: 'zone',
+      metadata: {
+        archetype: values.zoneType,
+        name: values.zoneName,
+      },
+      children: values.zoneLights.map((el) => ({ rid: el, rtype: 'light' })),
+    };
+    dispatch(addNewZoneAction(obj));
+  };
+
   if (isLoading || isLoadingZone) return <Loading />;
+
+  let options = [];
+  if (lights && lights.data) {
+    options = lights.data.map((el) => ({ text: el.name, value: el.id }));
+  }
+
+  let optionsZone = 'living_room, kitchen, dining, bedroom, kids_bedroom, bathroom, nursery, recreation, office, gym, hallway, toilet, front_door, garage, terrace, garden, driveway, carport, home, downstairs, upstairs, top_floor, attic, guest_room, staircase, lounge, man_cave, computer, studio, music, tv, reading, closet, storage, laundry_room, balcony, porch, barbecue, pool, other'.split(',').sort();
+  optionsZone = optionsZone.map(el => ({ text: el, value: el }));
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.zones" />
+      <Formik initialValues={{ zoneName: 'test', zoneLights: [] }} onSubmit={onSubmit}>
+        <Form>
+          <Field name="zoneName" placeholder="Zone name" />
+          <Field as={RadioGroupButton} name="zoneLights" options={options} />
+          <Field as={DropdownMenu} name="zoneType" options={optionsZone} />
+          <button type="submit">Go</button>
+        </Form>
+      </Formik>
       <table className="ui selectable table">
         <thead>
           <tr>
@@ -71,10 +103,7 @@ const ZonesView = () => {
               <FormattedMessage id="zonesView.header.actions" />
             </th>
             <th>
-              <FormattedMessage id="zonesView.header.id" />
-            </th>
-            <th>
-              <FormattedMessage id="zonesView.header.groupedLight" />
+              <FormattedMessage id="zonesView.header.type" />
             </th>
             <th>
               <FormattedMessage id="zonesView.header.name" />
@@ -92,8 +121,7 @@ const ZonesView = () => {
               return (
                 <tr key={k}>
                   <td>{editableActions(index)}</td>
-                  <td>{group.id}</td>
-                  <td>{group.services.filter((el) => el.rtype === 'grouped_light')[0].rid}</td>
+                  <td>{group.metadata.archetype}</td>
                   <td>{group.metadata.name}</td>
                   <td>{fetchLightById(group.children).join(', ')}</td>
                 </tr>
