@@ -11,6 +11,7 @@
   "roomsView.header.id": "ID",
   "roomsView.header.name": "Nom",
   "roomsView.header.lights": "Lumières",
+  "zonesView.header.groupedLight": "Lumières",
   "settingsView.tab.config": "Configuration",
   "settingsView.tab.notifications": "Notifications"
 }

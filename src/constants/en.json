@@ -18,6 +18,7 @@
   "zonesView.header.id": "ID",
   "zonesView.header.name": "Name",
   "zonesView.header.lights": "Lights",
+  "zonesView.header.groupedLight": "Grouped Lights",
   "accessoriesView.header.actions": "Actions",
   "accessoriesView.header.id": "ID",
   "accessoriesView.header.name": "Name",
