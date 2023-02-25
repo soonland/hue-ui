@@ -43,6 +43,13 @@ svg#logo {
   padding: 15px 0px 0px;
 }
 
+svg#weatherLogo {
+  color: #fff;
+  margin: auto;
+  width: 100%;
+  padding: 15px 0px 0px;
+}
+
 .leftMenu {
   /* display: inline-block; */
   background-color: var(--mainColor);

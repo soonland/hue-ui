@@ -1,10 +1,15 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
+import ActionIcon from '../common/ActionIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faLightbulb, faCloudSun } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { updateWeatherAction } from '../../store/slices/headerSlice';
 
 const LeftMenu = () => {
+  const dispatch = useDispatch();
+
   const menuOptions = [
     { label: 'leftMenu.menuItem.home', url: '/' },
     { label: 'leftMenu.menuItem.lights', url: '/lights' },
@@ -26,10 +31,19 @@ const LeftMenu = () => {
     );
   });
 
+  const onClickWeatherLogo = () => {
+    dispatch(updateWeatherAction());
+  };
+
   return (
     <div className="leftMenu">
       <FontAwesomeIcon icon={faLightbulb} size="4x" id="logo" />
       <div className="menuHeader">{menuHeader}</div>
+      <div className="weather">
+        <ActionIcon onClick={onClickWeatherLogo} action="edit">
+          <FontAwesomeIcon icon={faCloudSun} size="4x" id="weatherLogo" />
+        </ActionIcon>
+      </div>
     </div>
   );
 };

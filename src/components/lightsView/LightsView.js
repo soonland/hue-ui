@@ -12,7 +12,7 @@ import { getGroupedLight, getGroupedLightAction, setGroupedLightStateAction } fr
 import DropdownMenu from '../common/DropdownMenu';
 import ActionIcon from '../common/ActionIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faSave, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import { updateRoomAction } from '../../store/slices/roomsSlice';
 
 const LightsView = () => {
@@ -36,6 +36,10 @@ const LightsView = () => {
 
   const onClickLight = (action, index) => {
     dispatch(setStateAction({ id: index, rgb: [color.r, color.g, color.b] }));
+  };
+
+  const onClickRoom = (id) => {
+    dispatch(setGroupedLightStateAction({ id, rgb: [color.r, color.g, color.b] }));
   };
 
   const handleChangeComplete = (parColor) => {
@@ -78,7 +82,8 @@ const LightsView = () => {
   return (
     <div>
       <Title level="h1" id="leftMenu.menuItem.lights" />
-      {/* <CirclePicker color={color} onChangeComplete={handleChangeComplete} /> */}
+      <CirclePicker color={color} onChangeComplete={handleChangeComplete} />
+      <br />
       {lights &&
         lights.data &&
         rooms &&
@@ -115,6 +120,9 @@ const LightsView = () => {
             <div key={k} className="room">
               <div className="name">{room.metadata.name}</div>
               <div className="switch">
+                <ActionIcon onClick={() => onClickRoom(glight.id)}>
+                  <FontAwesomeIcon icon={faLightbulb} />
+                </ActionIcon>
                 <Switch onChange={handleChangeRoom} checked={glight.on.on || false} id={room.services[0].rid} />
               </div>
               {lights.data.map((light, index) => {
