@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 import ActionIcon from '../common/ActionIcon';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb, faCloudSun } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch } from 'react-redux';
-import { updateWeatherAction } from '../../store/slices/headerSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateWeatherAction, getWeather } from '../../store/slices/headerSlice';
+import DropdownMenu from '../common/DropdownMenu';
+import { getLightsAction } from 'store/slices/lightsSlice';
 
 const LeftMenu = () => {
   const dispatch = useDispatch();
+  const weather = useSelector(getWeather);
 
   const menuOptions = [
     { label: 'leftMenu.menuItem.home', url: '/' },
@@ -31,8 +34,27 @@ const LeftMenu = () => {
     );
   });
 
-  const onClickWeatherLogo = () => {
-    dispatch(updateWeatherAction());
+  const [value, setValue] = useState('');
+  const options = [
+    {
+      text: 'Rimouski', value: '48.45;-68.52'
+    },
+    {
+      text: 'Cuba', value: '22.02;-79.49'
+    },
+    {
+      text: 'Madrid', value: '40.42;-3.70'
+    },
+    {
+      text: 'Anchorage', value: '61.22;-149.90'
+    }
+  ];
+
+  const onChangeCity = (event) => {
+    console.log(event.target.value);
+    setValue(event.target.value);
+    dispatch(updateWeatherAction(event.target.value));
+    dispatch(getLightsAction());
   };
 
   return (
@@ -40,9 +62,10 @@ const LeftMenu = () => {
       <FontAwesomeIcon icon={faLightbulb} size="4x" id="logo" />
       <div className="menuHeader">{menuHeader}</div>
       <div className="weather">
-        <ActionIcon onClick={onClickWeatherLogo} action="edit">
-          <FontAwesomeIcon icon={faCloudSun} size="4x" id="weatherLogo" />
-        </ActionIcon>
+        <FontAwesomeIcon icon={faCloudSun} size="3x" id="weatherLogo" />
+        <br />
+        <DropdownMenu options={options} value={value} onChange={onChangeCity} />
+        {weather?.temperature}
       </div>
     </div>
   );

@@ -2,8 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { updateWeatherService } from '../../services/weather';
 
-export const updateWeatherAction = createAsyncThunk('common/updateWeather', async (search) => {
-  const response = await updateWeatherService(search);
+export const updateWeatherAction = createAsyncThunk('common/updateWeather', async (coordinates) => {
+  const response = await updateWeatherService(coordinates);
   return response;
 });
 
