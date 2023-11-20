@@ -8,7 +8,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@reach/slider": "^0.16.0",
+    "@reach/slider": "^0.18.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@tds/core-css-reset": "^3.0.1",
     "@tds/core-heading": "^3.0.8",
