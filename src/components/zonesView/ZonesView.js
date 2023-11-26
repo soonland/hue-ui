@@ -83,7 +83,7 @@ const ZonesView = () => {
     options = lights.data.map((el) => ({ text: el.name, value: el.id }));
   }
 
-  let optionsZone = 'living_room, kitchen, dining, bedroom, kids_bedroom, bathroom, nursery, recreation, office, gym, hallway, toilet, front_door, garage, terrace, garden, driveway, carport, home, downstairs, upstairs, top_floor, attic, guest_room, staircase, lounge, man_cave, computer, studio, music, tv, reading, closet, storage, laundry_room, balcony, porch, barbecue, pool, other'.split(',').sort();
+  let optionsZone = 'living room, kitchen, dining, bedroom, kids_bedroom, bathroom, nursery, recreation, office, gym, hallway, toilet, front_door, garage, terrace, garden, driveway, carport, home, downstairs, upstairs, top_floor, attic, guest_room, staircase, lounge, man_cave, computer, studio, music, tv, reading, closet, storage, laundry_room, balcony, porch, barbecue, pool, other'.split(', ').sort();
   optionsZone = optionsZone.map(el => ({ text: el, value: el }));
   return (
     <div>
