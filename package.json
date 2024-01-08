@@ -12,7 +12,7 @@
     "@reduxjs/toolkit": "^1.5.0",
     "@tds/core-css-reset": "^3.0.1",
     "@tds/core-heading": "^3.0.8",
-    "axios": "^0.26.0",
+    "axios": "^1.6.5",
     "babel-plugin-module-resolver": "^5.0.0",
     "express": "^4.17.1",
     "formik": "^2.2.6",
