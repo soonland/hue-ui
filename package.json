@@ -5,7 +5,7 @@
   "dependencies": {
     "@babel/core": "^7.23.9",
     "@babel/preset-react": "^7.24.1",
-    "@fortawesome/fontawesome-svg-core": "^6.1.0",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@reach/slider": "^0.18.0",
