@@ -24,7 +24,7 @@
     "react-redux": "^7.2.9",
     "react-router-dom": "^6.1.1",
     "react-switch": "^7.0.0",
-    "redux": "^4.0.5",
+    "redux": "^5.0.1",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.2.1",
     "winston": "^3.3.3"
