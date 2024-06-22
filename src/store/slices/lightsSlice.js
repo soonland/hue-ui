@@ -17,19 +17,28 @@ const slice = createSlice({
   name: 'lights',
   initialState: { loading: false, lights: null },
   reducers: {},
-  extraReducers: {
-    // getProducts
-    [getLightsAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(setStateAction.pending, (state) => {
       state.loading = true;
-    },
-    [getLightsAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.lights = action.payload.result;
-    },
-    [getLightsAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+    })
+      .addCase(setStateAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setStateAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getLightsAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getLightsAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.lights = action.payload.result;
+      })
+      .addCase(getLightsAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

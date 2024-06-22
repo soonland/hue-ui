@@ -29,29 +29,48 @@ const slice = createSlice({
   name: 'rooms',
   initialState: { loading: false, rooms: null },
   reducers: {},
-  extraReducers: {
-    [getRoomsAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(deleteRoomAction.pending, (state) => {
       state.loading = true;
-    },
-    [getRoomsAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.rooms = action.payload.result;
-    },
-    [getRoomsAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
-    [updateRoomAction.pending]: (state) => {
-      state.loading = true;
-    },
-    [updateRoomAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.updatedRoom = action.payload.result;
-    },
-    [updateRoomAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+    })
+      .addCase(deleteRoomAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteRoomAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(setRoomStateAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(setRoomStateAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setRoomStateAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(updateRoomAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(updateRoomAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(updateRoomAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(getRoomsAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getRoomsAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.rooms = action.payload.result;
+      })
+      .addCase(getRoomsAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

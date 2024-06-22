@@ -17,19 +17,26 @@ const slice = createSlice({
   name: 'groupedLight',
   initialState: { loading: false, groupedLight: null },
   reducers: {},
-  extraReducers: {
-    // getProducts
-    [getGroupedLightAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(setGroupedLightStateAction.pending, (state) => {
       state.loading = true;
-    },
-    [getGroupedLightAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.groupedLight = action.payload.result;
-    },
-    [getGroupedLightAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+    })
+      .addCase(setGroupedLightStateAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setGroupedLightStateAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      }).addCase(getGroupedLightAction.pending, (state) => {
+        state.loading = true;
+      }
+      ).addCase(getGroupedLightAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.groupedLight = action.payload.result;
+      }).addCase(getGroupedLightAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

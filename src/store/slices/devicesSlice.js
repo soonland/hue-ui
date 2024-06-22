@@ -17,19 +17,25 @@ const slice = createSlice({
   name: 'devices',
   initialState: { loading: false, devices: null },
   reducers: {},
-  extraReducers: {
-    // getProducts
-    [getDevicesAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(setStateAction.pending, (state) => {
       state.loading = true;
-    },
-    [getDevicesAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.devices = action.payload.result;
-    },
-    [getDevicesAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+    })
+      .addCase(setStateAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setStateAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      }).addCase(getDevicesAction.pending, (state) => {
+        state.loading = true;
+      }).addCase(getDevicesAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.devices = action.payload.result;
+      }).addCase(getDevicesAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

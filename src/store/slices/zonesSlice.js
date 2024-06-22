@@ -23,18 +23,35 @@ const slice = createSlice({
   name: 'zones',
   initialState: { loading: false, zones: null },
   reducers: {},
-  extraReducers: {
-    [getZonesAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(deleteZoneAction.pending, (state) => {
       state.loading = true;
-    },
-    [getZonesAction.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.zones = action.payload.result;
-    },
-    [getZonesAction.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.error.message;
-    },
+    })
+      .addCase(deleteZoneAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteZoneAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(setZoneStateAction.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(setZoneStateAction.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(setZoneStateAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      }).addCase(getZonesAction.pending, (state) => {
+        state.loading = true;
+      }).addCase(getZonesAction.fulfilled, (state, action) => {
+        state.loading = false;
+        state.zones = action.payload.result;
+      }).addCase(getZonesAction.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
   },
 });
 

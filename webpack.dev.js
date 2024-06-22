@@ -13,7 +13,7 @@ module.exports = merge(common, {
     liveReload: true, // refreshes the page on change
     watchFiles: ['src/**/*.js', 'src/**/*.css'],
     open: false,
-    port: 8080,
+    port: 9080,
     historyApiFallback: {
       index: '/', // used for routing (404 response), and address bar routing
     },

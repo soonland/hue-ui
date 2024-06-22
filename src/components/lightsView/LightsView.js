@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import { FormattedMessage } from 'react-intl';
 import Title from 'components/common/Title';
-import { CirclePicker } from 'react-color';
 import Switch from 'react-switch';
 import Light from '../common/Light';
 import { getDevicesAction, getDevices } from 'store/slices/devicesSlice';
