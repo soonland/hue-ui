@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLightbulb } from '@fortawesome/free-solid-svg-icons';
 import Switch from 'react-switch';
-import Slider from '@reach/slider';
 import ActionIcon from './ActionIcon';
-import '@reach/slider/styles.css';
 
 const Light = ({ data, onClickLight, handleChange, handleSliderChange, index }) => {
   const colorLight = data.on.on ? `rgb(${data.rgb.r}, ${data.rgb.g}, ${data.rgb.b})` : 'black';
@@ -19,15 +17,7 @@ const Light = ({ data, onClickLight, handleChange, handleSliderChange, index }) 
           <FontAwesomeIcon icon={faLightbulb} size="4x" title={data.name} style={{ color: `${colorLight}` }} />
         </ActionIcon>
       </div>
-      <Slider
-        onChange={(bri) => handleSliderChange(bri, data.id)}
-        min={0}
-        max={100}
-        step={5}
-        orientation="horizontal"
-        value={data.brightness}
-        id={`${index}`}
-      />
+      <input type="range" min="0" max="100" value={data.brightness} onChange={(e) => handleSliderChange(e.target.value, data.id)} />
       <div className='device'>Device ID:<br />{data.device}</div>
     </div>
   );

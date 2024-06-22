@@ -31,41 +31,35 @@ const slice = createSlice({
     errorNewLights: '',
   },
   reducers: {},
-  extraReducers: {
-    [getBridgesAction.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(getBridgesAction.pending, (state) => {
       state.loadingBridges = true;
-    },
-    [getBridgesAction.fulfilled]: (state, action) => {
-      state.loadingBridges = false;
-      state.bridges = action.payload.result;
-    },
-    [getBridgesAction.rejected]: (state, action) => {
-      state.loadingBridges = false;
-      state.errorBridges = action.error.message;
-    },
-    [getSearchNewLightsAction.pending]: (state) => {
-      state.loadingSearchLight = true;
-    },
-    [getSearchNewLightsAction.fulfilled]: (state, action) => {
-      state.loadingSearchLight = false;
-      state.loadingNewLight = true;
-      state.searchNewLights = action.payload.result;
-    },
-    [getSearchNewLightsAction.rejected]: (state, action) => {
-      state.loadingSearchLight = false;
-      state.errorSearchNewLights = action.error.message;
-    },
-    [getNewLightsAction.pending]: (state) => {
-      state.loadingNewLight = true;
-    },
-    [getNewLightsAction.fulfilled]: (state, action) => {
-      state.loadingNewLight = false;
-      state.newLights = action.payload.result;
-    },
-    [getNewLightsAction.rejected]: (state, action) => {
-      state.loadingNewLight = false;
-      state.errorNewLights = action.error.message;
-    },
+    })
+      .addCase(getBridgesAction.fulfilled, (state, action) => {
+        state.loadingBridges = false;
+        state.bridges = action.payload.result;
+      })
+      .addCase(getBridgesAction.rejected, (state, action) => {
+        state.loadingBridges = false;
+        state.errorBridges = action.error.message;
+      }).addCase(getSearchNewLightsAction.pending, (state) => {
+        state.loadingSearchLight = true;
+      }).addCase(getSearchNewLightsAction.fulfilled, (state, action) => {
+        state.loadingSearchLight = false;
+        state.loadingNewLight = true;
+        state.searchNewLights = action.payload.result;
+      }).addCase(getSearchNewLightsAction.rejected, (state, action) => {
+        state.loadingSearchLight = false;
+        state.errorSearchNewLights = action.error.message;
+      }).addCase(getNewLightsAction.pending, (state) => {
+        state.loadingNewLight = true;
+      }).addCase(getNewLightsAction.fulfilled, (state, action) => {
+        state.loadingNewLight = false;
+        state.newLights = action.payload.result;
+      }).addCase(getNewLightsAction.rejected, (state, action) => {
+        state.loadingNewLight = false;
+        state.errorNewLights = action.error.message;
+      });
   },
 });
 

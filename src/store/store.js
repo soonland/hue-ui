@@ -1,15 +1,15 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import { createLogger } from 'redux-logger';
 import reducers from './reducers';
 
-const middleware = [...getDefaultMiddleware()];
+const middleware = [];
 if (process.env.NODE_ENV !== 'production') {
   middleware.push(createLogger());
 }
 
 export default configureStore({
   reducer: reducers,
-  middleware: [...middleware],
+  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), ...middleware],
   initialState: {},
-  enhancers: [],
+  enhancers: (defaultEnhancers) => defaultEnhancers(),
 });
