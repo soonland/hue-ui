@@ -24,9 +24,10 @@ const slice = createSlice({
   initialState: { loading: false, zones: null },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(deleteZoneAction.pending, (state) => {
-      state.loading = true;
-    })
+    builder
+      .addCase(deleteZoneAction.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(deleteZoneAction.fulfilled, (state) => {
         state.loading = false;
       })
@@ -43,12 +44,15 @@ const slice = createSlice({
       .addCase(setZoneStateAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      }).addCase(getZonesAction.pending, (state) => {
+      })
+      .addCase(getZonesAction.pending, (state) => {
         state.loading = true;
-      }).addCase(getZonesAction.fulfilled, (state, action) => {
+      })
+      .addCase(getZonesAction.fulfilled, (state, action) => {
         state.loading = false;
         state.zones = action.payload.result;
-      }).addCase(getZonesAction.rejected, (state, action) => {
+      })
+      .addCase(getZonesAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

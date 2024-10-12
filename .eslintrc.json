@@ -6,14 +6,8 @@
     "node": true
   },
   // "parser": "babel-eslint",
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
-  "plugins": [
-    "prettier"
-  ],
+  "extends": ["prettier", "prettier/react"],
+  "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -60,24 +54,16 @@
     "react/jsx-filename-extension": [
       1,
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "no-underscore-dangle": [
       "error",
       {
-        "allow": [
-          "__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"
-        ]
+        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
       }
     ],
-    "spaced-comment": [
-      "warn",
-      "always"
-    ]
+    "spaced-comment": ["warn", "always"]
   },
   "parserOptions": {
     "sourceType": "module",
@@ -89,9 +75,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ]
+        "paths": ["src"]
       }
     }
   }
