@@ -30,9 +30,10 @@ const slice = createSlice({
   initialState: { loading: false, rooms: null },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(deleteRoomAction.pending, (state) => {
-      state.loading = true;
-    })
+    builder
+      .addCase(deleteRoomAction.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(deleteRoomAction.fulfilled, (state) => {
         state.loading = false;
       })

@@ -3,8 +3,7 @@ import LeftMenu from 'components/leftMenu/LeftMenu';
 import './App.css';
 
 const App = ({ children }) => {
-
-  const loadData = async () => { };
+  const loadData = async () => {};
 
   useEffect(() => {
     loadData();

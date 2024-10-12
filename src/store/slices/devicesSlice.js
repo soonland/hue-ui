@@ -18,21 +18,25 @@ const slice = createSlice({
   initialState: { loading: false, devices: null },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setStateAction.pending, (state) => {
-      state.loading = true;
-    })
+    builder
+      .addCase(setStateAction.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(setStateAction.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(setStateAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
-      }).addCase(getDevicesAction.pending, (state) => {
+      })
+      .addCase(getDevicesAction.pending, (state) => {
         state.loading = true;
-      }).addCase(getDevicesAction.fulfilled, (state, action) => {
+      })
+      .addCase(getDevicesAction.fulfilled, (state, action) => {
         state.loading = false;
         state.devices = action.payload.result;
-      }).addCase(getDevicesAction.rejected, (state, action) => {
+      })
+      .addCase(getDevicesAction.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

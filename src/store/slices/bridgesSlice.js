@@ -32,9 +32,10 @@ const slice = createSlice({
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getBridgesAction.pending, (state) => {
-      state.loadingBridges = true;
-    })
+    builder
+      .addCase(getBridgesAction.pending, (state) => {
+        state.loadingBridges = true;
+      })
       .addCase(getBridgesAction.fulfilled, (state, action) => {
         state.loadingBridges = false;
         state.bridges = action.payload.result;
@@ -42,21 +43,27 @@ const slice = createSlice({
       .addCase(getBridgesAction.rejected, (state, action) => {
         state.loadingBridges = false;
         state.errorBridges = action.error.message;
-      }).addCase(getSearchNewLightsAction.pending, (state) => {
+      })
+      .addCase(getSearchNewLightsAction.pending, (state) => {
         state.loadingSearchLight = true;
-      }).addCase(getSearchNewLightsAction.fulfilled, (state, action) => {
+      })
+      .addCase(getSearchNewLightsAction.fulfilled, (state, action) => {
         state.loadingSearchLight = false;
         state.loadingNewLight = true;
         state.searchNewLights = action.payload.result;
-      }).addCase(getSearchNewLightsAction.rejected, (state, action) => {
+      })
+      .addCase(getSearchNewLightsAction.rejected, (state, action) => {
         state.loadingSearchLight = false;
         state.errorSearchNewLights = action.error.message;
-      }).addCase(getNewLightsAction.pending, (state) => {
+      })
+      .addCase(getNewLightsAction.pending, (state) => {
         state.loadingNewLight = true;
-      }).addCase(getNewLightsAction.fulfilled, (state, action) => {
+      })
+      .addCase(getNewLightsAction.fulfilled, (state, action) => {
         state.loadingNewLight = false;
         state.newLights = action.payload.result;
-      }).addCase(getNewLightsAction.rejected, (state, action) => {
+      })
+      .addCase(getNewLightsAction.rejected, (state, action) => {
         state.loadingNewLight = false;
         state.errorNewLights = action.error.message;
       });

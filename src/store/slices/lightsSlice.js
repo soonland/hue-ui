@@ -18,9 +18,10 @@ const slice = createSlice({
   initialState: { loading: false, lights: null },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(setStateAction.pending, (state) => {
-      state.loading = true;
-    })
+    builder
+      .addCase(setStateAction.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(setStateAction.fulfilled, (state) => {
         state.loading = false;
       })
