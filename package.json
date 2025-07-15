@@ -65,7 +65,7 @@
     "node-bash-title": "^0.0.2",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.2",
-    "webpack": "^5.92.1",
+    "webpack": "^5.100.1",
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.0.4",
